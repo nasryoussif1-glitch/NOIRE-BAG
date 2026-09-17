@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NOIRÉ | حقائب حريمي</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Tahoma, sans-serif;
+    }
+
+    body {
+      background: #faf7f5;
+      color: #241b1d;
+    }
+
+    /* Navbar */
+    nav {
+      height: 75px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 15px rgba(0,0,0,.06);
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #8b5360;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 15px;
+      transition: .3s;
+    }
+
+    nav ul li a:hover {
+      color: #a96878;
+    }
+
+    .cart {
+      position: relative;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -10px;
+      right: -12px;
+      background: #9c5968;
+      color: white;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 8%;
+      background: linear-gradient(120deg, #f6e9e9, #fff);
+      gap: 40px;
+    }
+
+    .hero-text {
+      max-width: 520px;
+    }
+
+    .hero-text span {
+      color: #a05e6c;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .hero-text h1 {
+      font-size: 60px;
+      margin: 15px 0;
+      line-height: 1.1;
+    }
+
+    .hero-text p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    .hero-btn {
+      background: #8f5361;
+      color: white;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .hero-btn:hover {
+      background: #6f3d49;
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      width: 46%;
+      max-width: 530px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(80,40,40,.15);
+    }
+
+    .hero-image img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Categories */
+    .categories {
+      padding: 60px 8%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 34px;
+      margin-bottom: 35px;
+    }
+
+    .category-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .category {
+      background: white;
+      padding: 35px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: .3s;
+      border: 1px solid #eee;
+    }
+
+    .category:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0,0,0,.08);
+    }
+
+    .category-icon {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .category h3 {
+      margin-bottom: 8px;
+    }
+
+    .category p {
+      color: #777;
+    }
+
+    /* Products */
+    .products {
+      padding: 70px 8%;
+    }
+
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 35px;
+    }
+
+    .search {
+      padding: 13px 18px;
+      border: 1px solid #ddd;
+      border-radius: 25px;
+      outline: none;
+      width: 240px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: .3s;
+      position: relative;
+      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 15px 35px rgba(0,0,0,.1);
+    }
+
+    .product-img {
+      height: 280px;
+      overflow: hidden;
+      background: #f4f4f4;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .product:hover img {
+      transform: scale(1.06);
+    }
+
+    .product-info {
+      padding: 18px;
+    }
+
+    .product-info h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .price {
+      color: #8f5361;
+      font-weight: bold;
+      font-size: 19px;
+      margin-bottom: 15px;
+    }
+
+    .add-btn {
+      width: 100%;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      background: #241b1d;
+      color: white;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .add-btn:hover {
+      background: #8f5361;
+    }
+
+    /* Offer */
+    .offer {
+      margin: 40px 8%;
+      padding: 55px;
+      border-radius: 25px;
+      background: #ead6da;
+      text-align: center;
+    }
+
+    .offer h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .offer p {
+      color: #644d52;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: #241b1d;
+      color: white;
+      padding: 50px 8%;
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    footer h3 {
+      color: #e7b8c1;
+      margin-bottom: 15px;
+    }
+
+    footer p {
+      color: #ccc;
+      line-height: 1.8;
+    }
+
+    .copyright {
+      text-align: center;
+      border-top: 1px solid #444;
+      margin-top: 30px;
+      padding-top: 20px;
+      color: #aaa;
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-image {
+        width: 90%;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .category-container {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+
+    @media(max-width: 550px) {
+      .hero-text h1 {
+        font-size: 40px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products-header {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">NOIRÉ</div>
+
+    <ul>
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#categories">الأقسام</a></li>
+      <li><a href="#products">الحقائب</a></li>
+      <li><a href="#offers">العروض</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+
+    <div class="cart">
+      🛍️
+      <div class="cart-count" id="cartCount">0</div>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+      <span>NEW COLLECTION 2026</span>
+
+      <h1>
+        أناقتك تبدأ<br>
+        من حقيبتك ✨
+      </h1>
+
+      <p>
+        اكتشفي مجموعتنا الجديدة من الحقائب الحريمي
+        بتصميمات أنيقة تناسب كل إطلالة.
+      </p>
+
+      <button class="hero-btn"
+              onclick="document.getElementById('products').scrollIntoView()">
+        اكتشفي المجموعة
+      </button>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://d1a66n3120ol3x.cloudfront.net/landing/tools/bag-product-photography/feature-highlight-1-fa14d9d9-0ad0-4dd7-acad-2304b2b8f89b.png"
+           alt="حقيبة حريمي">
+    </div>
+
+  </section>
+
+
+  <!-- Categories -->
+  <section class="categories" id="categories">
+
+    <h2 class="section-title">تسوقي حسب النوع</h2>
+
+    <div class="category-container">
+
+      <div class="category">
+        <div class="category-icon">👜</div>
+        <h3>Hand Bags</h3>
+        <p>حقائب يد أنيقة</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">👝</div>
+        <h3>Shoulder Bags</h3>
+        <p>حقائب كتف عصرية</p>
+      </div>
+
+      <div class="category">
+        <div class="category-icon">💼</div>
+        <h3>Clutches</h3>
+        <p>شنط سهرة وكلاچ</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Products -->
+  <section class="products" id="products">
+
+    <div class="products-header">
+      <h2 class="section-title">أحدث الحقائب</h2>
+
+      <input
+        type="text"
+        class="search"
+        id="search"
+        placeholder="🔍 ابحثي عن حقيبة..."
+        onkeyup="searchProducts()">
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+
+
+      <!-- Product 1 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://d1a66n3120ol3x.cloudfront.net/landing/tools/bag-product-photography/feature-highlight-1-fa14d9d9-0ad0-4dd7-acad-2304b2b8f89b.png"
+            alt="حقيبة جلد بني">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Classic Brown</h3>
+          <p>حقيبة جلد أنيقة للاستخدام اليومي</p>
+
+          <div class="price">1,299 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Classic Brown')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- Product 2 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://img.pixelz.com/blog/leather-photography-studio-tips-and-retouch-image-editing/blog-m18-6.jpg"
+            alt="حقيبة خضراء">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Emerald</h3>
+          <p>تصميم عصري بلون أخضر مميز</p>
+
+          <div class="price">1,450 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Emerald')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- Product 3 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://s.alicdn.com/%40sc04/kf/H20a5b4ecf5504237b2df8841a6c47f68u/2022-High-Capacity-Hand-Bags-Private-Label-Bags-Red-Color-Women-Shoulder-Handbags-Ladies-Genuine-Leather-Cross-Body-Tote.jpg"
+            alt="حقيبة حمراء">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Ruby Red</h3>
+          <p>حقيبة حمراء بتصميم فاخر</p>
+
+          <div class="price">1,599 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Ruby Red')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- Product 4 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://rawshot.ai/_next/image?q=75&url=https%3A%2F%2Fgcm-headless-cms.s3.eu-north-1.amazonaws.com%2Fadmin-generated-images%2Frawshot%2F4614b082-4b08-4029-b2a3-f23cdd728fa0%2Fai-handbag-product-photography-generator%2Fhero%2F1778094928751-67c64532.webp&w=3840"
+            alt="حقيبة بيج">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Beige Luxury</h3>
+          <p>تصميم ناعم وأنيق للمناسبات</p>
+
+          <div class="price">1,750 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Beige Luxury')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- Product 5 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://hoopstudios.com/cdn/shop/files/8C6A6675.jpg?v=1750326785&width=1946"
+            alt="حقيبة كحلي">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Navy Classic</h3>
+          <p>حقيبة كحلي مع حقيبة صغيرة</p>
+
+          <div class="price">1,399 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Navy Classic')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+
+      <!-- Product 6 -->
+      <div class="product">
+
+        <div class="product-img">
+          <img
+            src="https://img.pixelz.com/blog/leather-photography-studio-tips-and-retouch-image-editing/blog-m18-6.jpg"
+            alt="حقيبة جلد">
+        </div>
+
+        <div class="product-info">
+          <h3>حقيبة Milano</h3>
+          <p>تصميم عملي وأنيق</p>
+
+          <div class="price">1,199 جنيه</div>
+
+          <button class="add-btn"
+                  onclick="addToCart('Milano')">
+            أضيفي للسلة 🛍️
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Offer -->
+  <section class="offer" id="offers">
+
+    <h2>خصم 25% 🎁</h2>
+
+    <p>
+      احصلي على خصم خاص على مجموعتنا الجديدة لفترة محدودة.
+    </p>
+
+    <button class="hero-btn">
+      تسوقي الآن
+    </button>
+
+  </section>
+
+
+  <!-- Footer -->
+  <footer id="contact">
+
+    <div class="footer-content">
+
+      <div>
+        <h3>NOIRÉ</h3>
+        <p>
+          متجر متخصص في الحقائب الحريمي
+          بتصميمات عصرية وأنيقة.
+        </p>
+      </div>
+
+      <div>
+        <h3>روابط سريعة</h3>
+        <p>الرئيسية</p>
+        <p>الحقائب</p>
+        <p>العروض</p>
+      </div>
+
+      <div>
+        <h3>تواصل معنا</h3>
+        <p>📞 01000000000</p>
+        <p>📧 info@noire.com</p>
+        <p>📍 القاهرة، مصر</p>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 NOIRÉ - جميع الحقوق محفوظة
+    </div>
+
+  </footer>
+
+
+  <script>
+
+    let cartCount = 0;
+
+    function addToCart(productName) {
+
+      cartCount++;
+
+      document.getElementById("cartCount").innerText = cartCount;
+
+      alert(
+        "تم إضافة " +
+        productName +
+        " إلى السلة 🛍️"
+      );
+    }
+
+
+    function searchProducts() {
+
+      let search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+      let products =
+        document.querySelectorAll(".product");
+
+      products.forEach(product => {
+
+        let name =
+          product.querySelector("h3")
+          .innerText
+          .toLowerCase();
+
+        if(name.includes(search)) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
